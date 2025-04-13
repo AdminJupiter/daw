@@ -11,55 +11,56 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  color: #fff;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Dancing Script', cursive;
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+    }
 
-.overlay-content {
-  text-align: center;
-  background-color: rgba(255, 192, 203, 0.1);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255,192,203,0.5);
-}
+    .overlay-content {
+      text-align: center;
+      background-color: rgba(255, 192, 203, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,192,203,0.5);
+    }
 
-.overlay-content input {
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 15px;
-  font-size: 1em;
-  text-align: center;
-  background-color: #fff;
-  color: #000;
-}
+    .overlay-content input {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-size: 1em;
+      text-align: center;
+      background-color: #fff;
+      color: #000;
+    }
 
-.overlay-content button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: pink;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+    .overlay-content button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: pink;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-.overlay-content button:hover {
-  background-color: #ff9bb5;
-}
+    .overlay-content button:hover {
+      background-color: #ff9bb5;
+    }
 
     nav {
       position: fixed;
@@ -74,6 +75,7 @@
       z-index: 100;
       transition: all 0.3s ease;
     }
+
     nav a {
       color: #fff;
       text-decoration: none;
@@ -82,11 +84,11 @@
       font-size: 1.2em;
       transition: color 0.3s;
     }
+
     nav a:hover {
       color: #ffd1dc;
     }
 
-    /* General styles for hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -106,7 +108,6 @@
       transition: all 0.3s ease;
     }
 
-    /* Hide navigation by default on small screens */
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -143,6 +144,7 @@
     html {
       scroll-behavior: smooth;
     }
+
     body, html {
       height: 100%;
       font-family: 'Lora', serif;
@@ -155,6 +157,7 @@
       background-size: cover;
       position: relative;
     }
+
     body::before {
       content: "";
       position: absolute;
@@ -166,6 +169,7 @@
       animation: gradientShift 10s ease infinite;
       z-index: 0;
     }
+
     @keyframes gradientShift {
       0% { filter: hue-rotate(0deg); }
       50% { filter: hue-rotate(20deg); }
@@ -181,12 +185,14 @@
       justify-content: center;
       min-height: 100vh;
     }
+
     h1 {
       font-family: 'Dancing Script', cursive;
       font-size: 4em;
       margin-bottom: 20px;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     }
+
     #countdown {
       font-size: 2em;
       margin: 20px 0;
@@ -198,7 +204,6 @@
       box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
 
-
     footer {
       margin-top: 40px;
       font-size: 0.9em;
@@ -207,8 +212,7 @@
   </style>
 </head>
 <body>
- 
-  
+
   <div id="passcodeOverlay" class="overlay">
     <div class="overlay-content">
       <h2>🌸 Secret Access 🌸</h2>
@@ -218,7 +222,6 @@
       <p id="errorText" style="color: pink; margin-top: 10px;"></p>
     </div>
   </div>
-  
 
   <nav>
     <a href="index.html">Countdown</a>
@@ -250,78 +253,69 @@
   </div>
 
   <script>
-  // Function to check the passcode
-  function checkPasscode() {
-    const correctCode = "TOTODAYLE";
-    const entered = document.getElementById("passInput").value;
-    const errorText = document.getElementById("errorText");
+    let targetDate;
 
-    console.log("Entered:", entered); // Debugging log
+    function checkPasscode() {
+      const correctCode = "totodayle";
+      const entered = document.getElementById("passInput").value.trim().toLowerCase();
+      const errorText = document.getElementById("errorText");
 
-    if (entered.toLowerCase() === correctCode) {
-      document.getElementById("passcodeOverlay").style.display = "none";
-      document.getElementById("main").style.display = "block"; // Show main content after correct code
-      loadSavedTime(); // Ensure countdown time is loaded
-      setInterval(countdown, 1000); // Start countdown after passcode check
-    } else {
-      errorText.textContent = "Wrong code! 🌧 Try again...";
+      if (entered === correctCode) {
+        document.getElementById("passcodeOverlay").style.display = "none";
+        document.getElementById("main").style.display = "block";
+        loadSavedTime();
+        setInterval(countdown, 1000);
+      } else {
+        errorText.textContent = "Wrong code! 🌧 Try again...";
+      }
     }
-  }
 
-  // Countdown variables and functions
-  let targetDate;
+    const loadSavedTime = () => {
+      const savedTime = localStorage.getItem("countdownTime");
+      if (savedTime) {
+        targetDate = new Date(savedTime).getTime();
+        document.getElementById("timeSetter").value = savedTime;
+      } else {
+        targetDate = new Date("2025-05-15T18:00:00").getTime();
+      }
+    };
 
-  const loadSavedTime = () => {
-    const savedTime = localStorage.getItem("countdownTime");
-    if (savedTime) {
-      targetDate = new Date(savedTime).getTime();
-      document.getElementById("timeSetter").value = savedTime;
-    } else {
-      targetDate = new Date("2025-05-15T18:00:00").getTime(); // Default time
-    }
-  };
+    const setTime = () => {
+      const newTime = document.getElementById("timeSetter").value;
+      if (newTime) {
+        targetDate = new Date(newTime).getTime();
+        localStorage.setItem("countdownTime", newTime);
+        alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
+      }
+    };
 
-  const setTime = () => {
-    const newTime = document.getElementById("timeSetter").value;
-    if (newTime) {
-      targetDate = new Date(newTime).getTime();
-      localStorage.setItem("countdownTime", newTime);
-      alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
-    }
-  };
+    const countdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-  const countdown = () => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("countdown").innerHTML =
+        distance > 0
+          ? `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`
+          : "I'm with you now ❤️";
+    };
 
-    document.getElementById("countdown").innerHTML =
-      distance > 0
-        ? `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`
-        : "I'm with you now ❤️";
-  };
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("main").style.display = "none";
 
-  // DOM loaded setup
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("main").style.display = "none"; // Hide content initially
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
 
-    // Hamburger menu
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      nav.classList.toggle('active');
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
     });
-  });
-</script>
-
-
-   
+  </script>
 
 </body>
 </html>
