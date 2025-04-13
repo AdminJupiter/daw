@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <style>
     #main {
-  display: none;
-}
+      display: none;
+    }
 
     * {
       margin: 0;
@@ -16,54 +16,54 @@
       box-sizing: border-box;
     }
     .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  color: #fff;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Dancing Script', cursive;
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+    }
 
-.overlay-content {
-  text-align: center;
-  background-color: rgba(255, 192, 203, 0.1);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255,192,203,0.5);
-}
+    .overlay-content {
+      text-align: center;
+      background-color: rgba(255, 192, 203, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,192,203,0.5);
+    }
 
-.overlay-content input {
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 15px;
-  font-size: 1em;
-  text-align: center;
-  background-color: #fff;
-  color: #000;
-}
+    .overlay-content input {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-size: 1em;
+      text-align: center;
+      background-color: #fff;
+      color: #000;
+    }
 
-.overlay-content button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: pink;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+    .overlay-content button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: pink;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-.overlay-content button:hover {
-  background-color: #ff9bb5;
-}
+    .overlay-content button:hover {
+      background-color: #ff9bb5;
+    }
 
     nav {
       position: fixed;
@@ -90,7 +90,6 @@
       color: #ffd1dc;
     }
 
-    /* General styles for hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -110,7 +109,6 @@
       transition: all 0.3s ease;
     }
 
-    /* Hide navigation by default on small screens */
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -217,8 +215,7 @@
   <!-- Your regular content goes here -->
 </div>
 
-
-  <div id="passcodeOverlay" class="overlay">
+<div id="passcodeOverlay" class="overlay">
   <div class="overlay-content">
     <h2>🌸 Secret Access 🌸</h2>
     <p>Enter the magic code to continue:</p>
@@ -228,39 +225,36 @@
   </div>
 </div>
 
+<nav>
+  <a href="index.html">Countdown</a>
+  <a href="message.html">Message</a>
+  <a href="picture.html">Open When</a>
+  <a href="songs.html">Playlist</a>
+  <a href="loc.html">Journey</a>
+  <a href="garden.html">Love Garden</a>
+</nav>
 
-  <nav>
-    <a href="index.html">Countdown</a>
-    <a href="message.html">Message</a>
-    <a href="picture.html">Open When</a>
-    <a href="songs.html">Playlist</a>
-    <a href="loc.html">Journey</a>
-    <a href="garden.html">Love Garden</a>
-  </nav>
+<div class="hamburger">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 
-  <div class="hamburger">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <div class="container" id="main">
-    <h1>Counting Down to You 💖</h1>
-    <div id="countdown"></div>
-    
-    <div>
-      <input type="datetime-local" id="timeSetter" />
-      <button onclick="setTime()">Set Time</button>
-    </div>
-
-    <footer>
-      Made with endless love.
-    </footer>
-  </div>
-
-
+<div class="container" id="main">
+  <h1>Counting Down to You 💖</h1>
+  <div id="countdown"></div>
   
-  <script>
+  <div>
+    <input type="datetime-local" id="timeSetter" />
+    <button onclick="setTime()">Set Time</button>
+  </div>
+
+  <footer>
+    Made with endless love.
+  </footer>
+</div>
+
+<script>
   function isInMessenger() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     // Check if user agent includes "FBAV" (Facebook App) and "FBAN" (Facebook Messenger)
@@ -270,13 +264,13 @@
   if (isInMessenger()) {
     // Hide the main content
     document.getElementById("main").style.display = "none";
-    // Show the block message content
+    // Show the block message or alternative content
     document.getElementById("blockMessenger").style.display = "flex";
   } else {
     // If not in Messenger, show the main content
     document.getElementById("main").style.display = "block";
   }
-  
+
   const correctCode = "okaynakaminijao";
 
   function checkPasscode() {
@@ -342,7 +336,6 @@
     setInterval(countdown, 1000);
   });
 </script>
-
 
 </body>
 </html>
