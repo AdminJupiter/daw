@@ -210,10 +210,13 @@
   </style>
 </head>
 <body>
-  <div id="blockMessenger" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#111; color:white; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
-  <h2>This site can’t be opened in Messenger or Facebook App.</h2>
-  <p>Please open it in your browser (like Chrome or Safari) for the best experience. 🌈</p>
+<div id="blockMessenger" style="display: none;">
+  Sorry, this content cannot be viewed in Messenger. Please open in a browser.
 </div>
+<div id="main">
+  <!-- Your regular content goes here -->
+</div>
+
 
   <div id="passcodeOverlay" class="overlay">
   <div class="overlay-content">
@@ -255,9 +258,25 @@
     </footer>
   </div>
 
-  <script>
+
   
   <script>
+  function isInMessenger() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    // Check if user agent includes "FBAV" (Facebook App) and "FBAN" (Facebook Messenger)
+    return ua.includes("FBAV") && ua.includes("FBAN");
+  }
+
+  if (isInMessenger()) {
+    // Hide the main content
+    document.getElementById("main").style.display = "none";
+    // Show the block message content
+    document.getElementById("blockMessenger").style.display = "flex";
+  } else {
+    // If not in Messenger, show the main content
+    document.getElementById("main").style.display = "block";
+  }
+  
   const correctCode = "okaynakaminijao";
 
   function checkPasscode() {
@@ -272,72 +291,58 @@
     }
   }
 
-  
-  function isInAppBrowser() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    return ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Instagram");
-  }
+  let targetDate;
 
-  if (isInAppBrowser()) {
-    document.getElementById("blockMessenger").style.display = "flex";
-    document.getElementById("main").style.display = "none";
-    if (document.getElementById("passcodeOverlay")) {
-      document.getElementById("passcodeOverlay").style.display = "none";
+  const loadSavedTime = () => {
+    const savedTime = localStorage.getItem("countdownTime");
+    if (savedTime) {
+      targetDate = new Date(savedTime).getTime();
+      document.getElementById("timeSetter").value = savedTime;
+    } else {
+      targetDate = new Date("2025-05-15T18:00:00").getTime();
     }
-  }
+  };
 
+  const setTime = () => {
+    const newTime = document.getElementById("timeSetter").value;
+    if (newTime) {
+      targetDate = new Date(newTime).getTime();
+      localStorage.setItem("countdownTime", newTime);
+      alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
+    }
+  };
 
-    let targetDate;
+  const countdown = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-    const loadSavedTime = () => {
-      const savedTime = localStorage.getItem("countdownTime");
-      if (savedTime) {
-        targetDate = new Date(savedTime).getTime();
-        document.getElementById("timeSetter").value = savedTime;
-      } else {
-        targetDate = new Date("2025-05-15T18:00:00").getTime();
-      }
-    };
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const setTime = () => {
-      const newTime = document.getElementById("timeSetter").value;
-      if (newTime) {
-        targetDate = new Date(newTime).getTime();
-        localStorage.setItem("countdownTime", newTime);
-        alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
-      }
-    };
+    document.getElementById("countdown").innerHTML =
+      `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
 
-    const countdown = () => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+    if (distance < 0) {
+      document.getElementById("countdown").innerHTML = "I'm with you now ❤️";
+    }
+  };
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
 
-      document.getElementById("countdown").innerHTML =
-        `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
-
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "I'm with you now ❤️";
-      }
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.querySelector('.hamburger');
-      const nav = document.querySelector('nav');
-
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        nav.classList.toggle('active');
-      });
-
-      loadSavedTime();
-      setInterval(countdown, 1000);
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
     });
-  </script>
+
+    loadSavedTime();
+    setInterval(countdown, 1000);
+  });
+</script>
+
 
 </body>
 </html>
