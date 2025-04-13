@@ -248,15 +248,17 @@
       Made with endless love.
     </footer>
   </div>
-<script>
-  
+
+  <script>
   // Function to check the passcode
   function checkPasscode() {
     const correctCode = "totodayle";
     const entered = document.getElementById("passInput").value;
     const errorText = document.getElementById("errorText");
 
-    if (entered === correctCode) {
+    console.log("Entered:", entered); // Debugging log
+
+    if (entered.toLowerCase() === correctCode) {
       document.getElementById("passcodeOverlay").style.display = "none";
       document.getElementById("main").style.display = "block"; // Show main content after correct code
       loadSavedTime(); // Ensure countdown time is loaded
@@ -265,61 +267,61 @@
       errorText.textContent = "Wrong code! 🌧 Try again...";
     }
   }
+
+  // Countdown variables and functions
+  let targetDate;
+
+  const loadSavedTime = () => {
+    const savedTime = localStorage.getItem("countdownTime");
+    if (savedTime) {
+      targetDate = new Date(savedTime).getTime();
+      document.getElementById("timeSetter").value = savedTime;
+    } else {
+      targetDate = new Date("2025-05-15T18:00:00").getTime(); // Default time
+    }
+  };
+
+  const setTime = () => {
+    const newTime = document.getElementById("timeSetter").value;
+    if (newTime) {
+      targetDate = new Date(newTime).getTime();
+      localStorage.setItem("countdownTime", newTime);
+      alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
+    }
+  };
+
+  const countdown = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+      distance > 0
+        ? `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`
+        : "I'm with you now ❤️";
+  };
+
+  // DOM loaded setup
   document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("main").style.display = "none";  // Hide the main content initially
-  
+    document.getElementById("main").style.display = "none"; // Hide content initially
 
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
 
-
-// Countdown functionality
-let targetDate;
-
-const loadSavedTime = () => {
-  const savedTime = localStorage.getItem("countdownTime");
-  if (savedTime) {
-    targetDate = new Date(savedTime).getTime();
-    document.getElementById("timeSetter").value = savedTime;
-  } else {
-    targetDate = new Date("2025-05-15T18:00:00").getTime(); // Default time
-  }
-};
-
-const setTime = () => {
-  const newTime = document.getElementById("timeSetter").value;
-  if (newTime) {
-    targetDate = new Date(newTime).getTime();
-    localStorage.setItem("countdownTime", newTime);
-    alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
-  }
-};
-
-const countdown = () => {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML =
-    `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
-
-  if (distance < 0) {
-    document.getElementById("countdown").innerHTML = "I'm with you now ❤️";
-  }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
   });
-});
-  </script>
+</script>
+
+
+   
 
 </body>
 </html>
