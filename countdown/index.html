@@ -6,64 +6,60 @@
   <title>Counting Down to You 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    #main {
-      display: none;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      color: #fff;
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Dancing Script', cursive;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dancing Script', cursive;
+}
 
-    .overlay-content {
-      text-align: center;
-      background-color: rgba(255, 192, 203, 0.1);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255,192,203,0.5);
-    }
+.overlay-content {
+  text-align: center;
+  background-color: rgba(255, 192, 203, 0.1);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255,192,203,0.5);
+}
 
-    .overlay-content input {
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      margin-top: 15px;
-      font-size: 1em;
-      text-align: center;
-      background-color: #fff;
-      color: #000;
-    }
+.overlay-content input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 1em;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+}
 
-    .overlay-content button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background-color: pink;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+.overlay-content button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: pink;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-    .overlay-content button:hover {
-      background-color: #ff9bb5;
-    }
+.overlay-content button:hover {
+  background-color: #ff9bb5;
+}
 
     nav {
       position: fixed;
@@ -90,6 +86,7 @@
       color: #ffd1dc;
     }
 
+    /* General styles for hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -109,6 +106,7 @@
       transition: all 0.3s ease;
     }
 
+    /* Hide navigation by default on small screens */
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -200,6 +198,7 @@
       box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
 
+
     footer {
       margin-top: 40px;
       font-size: 0.9em;
@@ -208,70 +207,52 @@
   </style>
 </head>
 <body>
-<div id="blockMessenger" style="display: none;">
-  Sorry, this content cannot be viewed in Messenger. Please open in a browser.
-</div>
-<div id="main">
-  <!-- Your regular content goes here -->
-</div>
-
-<div id="passcodeOverlay" class="overlay">
-  <div class="overlay-content">
-    <h2>🌸 Secret Access 🌸</h2>
-    <p>Enter the magic code to continue:</p>
-    <input type="password" id="passInput" placeholder="Enter passcode" />
-    <button onclick="checkPasscode()">Unlock</button>
-    <p id="errorText" style="color: pink; margin-top: 10px;"></p>
-  </div>
-</div>
-
-<nav>
-  <a href="index.html">Countdown</a>
-  <a href="message.html">Message</a>
-  <a href="picture.html">Open When</a>
-  <a href="songs.html">Playlist</a>
-  <a href="loc.html">Journey</a>
-  <a href="garden.html">Love Garden</a>
-</nav>
-
-<div class="hamburger">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
-
-<div class="container" id="main">
-  <h1>Counting Down to You 💖</h1>
-  <div id="countdown"></div>
+ 
   
-  <div>
-    <input type="datetime-local" id="timeSetter" />
-    <button onclick="setTime()">Set Time</button>
+  <div id="passcodeOverlay" class="overlay">
+    <div class="overlay-content">
+      <h2>🌸 Secret Access 🌸</h2>
+      <p>Enter the magic code to continue:</p>
+      <input type="password" id="passInput" placeholder="Enter passcode" />
+      <button onclick="checkPasscode()">Unlock</button>
+      <p id="errorText" style="color: pink; margin-top: 10px;"></p>
+    </div>
+  </div>
+  
+
+  <nav>
+    <a href="index.html">Countdown</a>
+    <a href="message.html">Message</a>
+    <a href="picture.html">Open When</a>
+    <a href="songs.html">Playlist</a>
+    <a href="loc.html">Journey</a>
+    <a href="garden.html">Love Garden</a>
+  </nav>
+
+  <div class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 
-  <footer>
-    Made with endless love.
-  </footer>
-</div>
+  <div class="container" id="main">
+    <h1>Counting Down to You 💖</h1>
+    <div id="countdown"></div>
+    
+    <div>
+      <input type="datetime-local" id="timeSetter" />
+      <button onclick="setTime()">Set Time</button>
+    </div>
 
-<script>
-  function isInMessenger() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    // Check if user agent includes "FBAV" (Facebook App) and "FBAN" (Facebook Messenger)
-    return ua.includes("FBAV") && ua.includes("FBAN");
-  }
+    <footer>
+      Made with endless love.
+    </footer>
+  </div>
 
-  if (isInMessenger()) {
-    // Hide the main content
-    document.getElementById("main").style.display = "none";
-    // Show the block message or alternative content
-    document.getElementById("blockMessenger").style.display = "flex";
-  } else {
-    // If not in Messenger, show the main content
-    document.getElementById("main").style.display = "block";
-  }
+  <script>
 
-  const correctCode = "okaynakaminijao";
+
+  const correctCode = "okaynakaminijao"; // <-- you can change this to your own passcode
 
   function checkPasscode() {
     const entered = document.getElementById("passInput").value;
@@ -285,57 +266,84 @@
     }
   }
 
-  let targetDate;
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("main").style.display = "none";
+  });
 
-  const loadSavedTime = () => {
-    const savedTime = localStorage.getItem("countdownTime");
-    if (savedTime) {
-      targetDate = new Date(savedTime).getTime();
-      document.getElementById("timeSetter").value = savedTime;
-    } else {
-      targetDate = new Date("2025-05-15T18:00:00").getTime();
-    }
-  };
 
-  const setTime = () => {
-    const newTime = document.getElementById("timeSetter").value;
-    if (newTime) {
-      targetDate = new Date(newTime).getTime();
-      localStorage.setItem("countdownTime", newTime);
-      alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
-    }
-  };
 
-  const countdown = () => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown").innerHTML =
-      `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
 
-    if (distance < 0) {
-      document.getElementById("countdown").innerHTML = "I'm with you now ❤️";
-    }
-  };
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
+    let targetDate;
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      nav.classList.toggle('active');
+    const loadSavedTime = () => {
+      const savedTime = localStorage.getItem("countdownTime");
+      if (savedTime) {
+        targetDate = new Date(savedTime).getTime();
+        document.getElementById("timeSetter").value = savedTime;
+      } else {
+        targetDate = new Date("2025-05-15T18:00:00").getTime();
+      }
+    };
+
+    const setTime = () => {
+      const newTime = document.getElementById("timeSetter").value;
+      if (newTime) {
+        targetDate = new Date(newTime).getTime();
+        localStorage.setItem("countdownTime", newTime);
+        alert(`New time set: ${new Date(targetDate).toLocaleString()}`);
+      }
+    };
+
+    const countdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "I'm with you now ❤️";
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
+
+      loadSavedTime();
+      setInterval(countdown, 1000);
     });
 
-    loadSavedTime();
-    setInterval(countdown, 1000);
-  });
-</script>
+
+    
+  function isInAppBrowser() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    return ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Instagram");
+  }
+
+  if (isInAppBrowser()) {
+    document.getElementById("blockMessenger").style.display = "flex";
+    document.getElementById("main").style.display = "none";
+    if (document.getElementById("passcodeOverlay")) {
+      document.getElementById("passcodeOverlay").style.display = "none";
+    }
+  }
+
+
+  </script>
 
 </body>
 </html>
