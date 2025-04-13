@@ -11,6 +11,56 @@
       padding: 0;
       box-sizing: border-box;
     }
+    .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dancing Script', cursive;
+}
+
+.overlay-content {
+  text-align: center;
+  background-color: rgba(255, 192, 203, 0.1);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255,192,203,0.5);
+}
+
+.overlay-content input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 1em;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+}
+
+.overlay-content button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: pink;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.overlay-content button:hover {
+  background-color: #ff9bb5;
+}
+
     nav {
       position: fixed;
       top: 0;
@@ -156,6 +206,16 @@
   </style>
 </head>
 <body>
+  <div id="passcodeOverlay" class="overlay">
+  <div class="overlay-content">
+    <h2>🌸 Secret Access 🌸</h2>
+    <p>Enter the magic code to continue:</p>
+    <input type="password" id="passInput" placeholder="Enter passcode" />
+    <button onclick="checkPasscode()">Unlock</button>
+    <p id="errorText" style="color: pink; margin-top: 10px;"></p>
+  </div>
+</div>
+
 
   <nav>
     <a href="index.html">Countdown</a>
@@ -187,6 +247,36 @@
   </div>
 
   <script>
+  
+  const correctCode = "sunflower"; // <-- you can change this to your own passcode
+
+  function checkPasscode() {
+    const entered = document.getElementById("passInput").value;
+    const errorText = document.getElementById("errorText");
+
+    if (entered === correctCode) {
+      document.getElementById("passcodeOverlay").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    } else {
+      errorText.textContent = "Wrong code! 🌧 Try again...";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("main").style.display = "none";
+  });
+
+
+
+
+
+
+
+
+
+
+
+
     let targetDate;
 
     const loadSavedTime = () => {
