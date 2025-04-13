@@ -249,9 +249,7 @@
     </footer>
   </div>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("main").style.display = "none";  // Hide the main content initially
-
+  
   // Function to check the passcode
   function checkPasscode() {
     const correctCode = "totodayle";
@@ -267,6 +265,9 @@
       errorText.textContent = "Wrong code! 🌧 Try again...";
     }
   }
+  document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("main").style.display = "none";  // Hide the main content initially
+  
 
 
 
